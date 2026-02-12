@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 // Dodajemy informację, że klasa jest encją (tabelą) bazy danych i podajemy jej nazwę
-@Entity (tableName = "wypieki tabela")
+@Entity (tableName = "wypieki_tabela")
 public class Wypiek {
     @PrimaryKey (autoGenerate = true) // samo sie bedzie generowac
     private int id;
