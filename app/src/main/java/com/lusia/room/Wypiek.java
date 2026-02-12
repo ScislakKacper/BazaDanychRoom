@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity (tableName = "wypieki_tabela")
 public class Wypiek {
     @PrimaryKey (autoGenerate = true) // samo sie bedzie generowac
-    private int id;
+    private int id = 0;
     @ColumnInfo (name = "temperatura pieczenia") // nazwa kolumny
     private int temperaturaPieczenia;
     @ColumnInfo (name = "czas pieczenia")

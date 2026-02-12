@@ -68,16 +68,16 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/przycisk_dodaj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dodaj" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/przycisk_edytuj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Usuń" />
+                android:text="Edytuj" />
         </LinearLayout>
 
     </LinearLayout>

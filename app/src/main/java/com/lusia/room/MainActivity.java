@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -31,12 +33,37 @@ public class MainActivity extends AppCompatActivity {
         List<Wypiek> wszystkieWypiekiListy = przepisyDatabase.zwrocWypiekiDao().zwrocWszystkieWypiekiZBazy();
         ArrayAdapter<Wypiek> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, wszystkieWypiekiListy);
         listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 przepisyDatabase.zwrocWypiekiDao().usunWypiekZBazy(wszystkieWypiekiListy.get(i));
                 wszystkieWypiekiListy.remove(i);
                 arrayAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+        EditText nazwaWypieku = findViewById(R.id.nazwa_wypieku);
+        EditText skladniki = findViewById(R.id.skladniki);
+        EditText czasWypieku = findViewById(R.id.czas_pieczenia);
+        EditText temperaturaPieczenia = findViewById(R.id.temperatura_pieczenia);
+        Button przyciskDodaj = findViewById(R.id.przycisk_dodaj);
+        Button przyciskEdytuj = findViewById(R.id.przycisk_edytuj);
+        przyciskDodaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                przepisyDatabase.zwrocWypiekiDao().wstawWypiekDoBazy(new Wypiek(Integer.parseInt(temperaturaPieczenia.getText().toString()), Integer.parseInt(czasWypieku.getText().toString()), nazwaWypieku.getText().toString(), skladniki.getText().toString()));
+                wszystkieWypiekiListy.add(new Wypiek(Integer.parseInt(temperaturaPieczenia.getText().toString()), Integer.parseInt(czasWypieku.getText().toString()), nazwaWypieku.getText().toString(), skladniki.getText().toString()));
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Wypiek wypiek = wszystkieWypiekiListy.get(i);
+                nazwaWypieku.setText(wypiek.getNazwaWypieku().toString());
+                skladniki.setText(wypiek.getSkladniki().toString());
+                temperaturaPieczenia.setText(Integer.toString(wypiek.getTemperaturaPieczenia()));
+                czasWypieku.setText(Integer.toString(wypiek.getCzasPieczenia()));
             }
         });
     }
