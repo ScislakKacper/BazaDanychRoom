@@ -63,4 +63,15 @@ public class Wypiek {
     public void setSkladniki(String skladniki) {
         this.skladniki = skladniki;
     }
+
+    @Override
+    public String toString() {
+        return "Wypiek{" +
+                "id=" + id +
+                ", temperaturaPieczenia=" + temperaturaPieczenia +
+                ", czasPieczenia=" + czasPieczenia +
+                ", nazwaWypieku='" + nazwaWypieku + '\'' +
+                ", skladniki='" + skladniki + '\'' +
+                '}';
+    }
 }
