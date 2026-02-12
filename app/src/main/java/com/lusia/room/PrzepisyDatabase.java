@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-@Database(entities = (Wypiek.class), version = 1)
+@Database(entities = {Wypiek.class}, version = 1)
 public abstract class PrzepisyDatabase extends RoomDatabase {
     public abstract WypiekiDAO zwrocWypiekiDao();
     private static PrzepisyDatabase instancja;
@@ -18,4 +18,5 @@ public abstract class PrzepisyDatabase extends RoomDatabase {
         // nie powinniśmy tego robić w wątku głównym
         return instancja;
     }
+    // Wejdź w App Inspection
 }
